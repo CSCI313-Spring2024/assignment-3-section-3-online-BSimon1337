@@ -1,15 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { HousingLocation } from '../housinglocation';
-import { HousingLocationComponent } from '../housing-location/housing-location.component';
-import { HousingService } from '../housing.service';
+import { Injectable } from '@angular/core';
+import { HousingLocation } from './housinglocation';
 
-@Component({
-  selector: 'app-home',
-  imports: [HousingLocationComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+@Injectable({
+  providedIn: 'root'
 })
-export class HomeComponent {
+export class HousingService {
+  constructor() { }
   readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
   housingLocationList: HousingLocation[] = [
   {
@@ -39,6 +35,7 @@ export class HomeComponent {
   state: 'AK',
   photo: `${this.baseUrl}/i-do-nothing-but-love-lAyXdl1-Wmc-unsplash.jpg`,
   availableUnits: 1,
+  
   wifi: false,
   laundry: false,
   },
@@ -72,7 +69,6 @@ export class HomeComponent {
   wifi: true,
   laundry: true,
   },
- 
   {
   id: 6,
   name: 'Seriously Safe Towns',
@@ -95,6 +91,7 @@ export class HomeComponent {
   },
   {
   id: 8,
+ 
   name: 'Seriously Safe Towns',
   city: 'Oakland',
   state: 'CA',
@@ -114,5 +111,12 @@ export class HomeComponent {
   laundry: true,
   },
   ];
-
+  getAllHousingLocations(): HousingLocation[] {
+  return this.housingLocationList;
+  }
+  getHousingLocationById(id: number): HousingLocation | undefined {
+  return this.housingLocationList.find((housingLocation) => housingLocation.id ===
+  id);
+  }
+  
 }
