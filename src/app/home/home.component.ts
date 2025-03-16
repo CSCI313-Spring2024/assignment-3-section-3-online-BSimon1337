@@ -21,4 +21,6 @@ export class HomeComponent {
       wifi: true,
       laundry: false,
     };
+
+    //Had to add a line so that git would recognize changes
 }
